@@ -1,0 +1,80 @@
+<br>
+<h5 align="center">Tracks's Genres</h5>
+<br>
+<div class="row col s12 m12 l12">
+	<table id="board-table" class="bordered striped">
+		<thead>
+			<tr>
+				<th>No.</th>
+				<th>ID</th>
+				<th>Genre Name</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="genre in genres">
+       			<td data-label="No.">{{$index +1}}</td>
+       			<td data-label="Name">{{genre.id}}</td>
+       			<td data-label="Name">{{genre.name}}</td>
+               	<td data-label="Edit">
+					<a class='dropdown-button btn-floating btn' ng-click="updateGenre($index)">
+                       <i class="material-icons">mode_edit</i></a>
+				</td>
+			</tr>
+		</tbody>
+	</table>	
+</div>	
+<!-- Pagination -->
+<div class="center">
+	<paging
+		page="currentPage" 
+		page-size="itemsPerPage" 
+		total="totalItems"
+		show-prev-next="true"
+ 		show-first-last="true"
+		paging-action="pageChanged(page)">
+	</paging> 
+</div>
+<div class="center">
+	<button class="btn waves-effect waves-light" type="submit" name="action" ng-click="addNewGenre()">Add new genre</button>
+</div>
+
+<!--modals--->
+<div modal data-target="addGenreModal" ready="onReady" complete="onDeleteModalComplete()" open="modalAddGenre"></div>
+<div modal data-target="editGenreModal" ready="onReady" complete="onDeleteModalComplete()" open="modalEditGenre"></div>
+
+<!-- add Confirmation Modal -->
+	<div id="addGenreModal" class="modal">
+    	<div class="modal-content">
+        	<h5>Add New Genre</h5>
+        	<div class="row">
+				<div class="input-field row col s6" >
+					<i class="material-icons prefix">radio</i>
+			  			<input id="track_name" name="track_name" type="text" class="validate" ng-model="genre_name">
+			   			<label class="active" for="track_name">Genre Name</label>
+			   	</div>
+			</div>
+    	</div>
+    	<div class="modal-footer">
+    		<a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        	<a href="#" ng-click="addGenreConfirmed()" class=" modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+    	</div>
+	</div>
+	
+<!-- edit Confirmation Modal -->
+	<div id="editGenreModal" class="modal">
+    	<div class="modal-content">
+        	<h5>Edit Genre</h5>
+        	<div class="row">
+				<div class="input-field row col s6" >
+					<i class="material-icons prefix">radio</i>
+			  			<input id="track_name" name="track_name" type="text" class="validate" ng-model="edit_genre.name">
+			   			<label class="active" for="track_name">Genre Name</label>
+			   	</div>
+			</div>
+    	</div>
+    	<div class="modal-footer">
+    		<a href="#" class="modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+        	<a href="#" ng-click="editGenreConfirmed()" class=" modal-action modal-close waves-effect waves-green btn-flat">Save</a>
+    	</div>
+	</div>

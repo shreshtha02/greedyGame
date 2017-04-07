@@ -1,0 +1,47 @@
+<h5>Edit Music Track</h5>
+<br>
+<div class="row">
+	<div class="input-field row col s6" >
+		<i class="material-icons prefix">radio</i>
+  			<input id="track_name" name="track_name" type="text" class="validate" ng-model="track.title">
+   			<label class="active" for="track_name">Track Name</label>
+   	</div>
+</div>
+<div class="row">
+	<div class="input-field row col s6" >
+		<i class="material-icons prefix">grade</i>
+  			<input id="track_rating" name="track_rating" type="number" step="0.1" class="validate" ng-model="track.rating">
+   			<label class="active" for="track_rating">Rating</label>
+   	</div>
+</div>
+<div class="col-sm-offset-1 col-md-6"> 
+   	<table id="board-table" style="width: 100%" class="table table-striped table-hover">
+   		<thead>
+   			<tr>
+   				<th style="width: 50%;text-align: left">No.</th>
+   				<th style="text-align: left">Genre</th>
+   			</tr>
+   		</thead>
+   		<tbody>
+   			<tr align="right" ng-repeat="genre in genres">
+  				<td  style="text-align: left">{{$index +1}}</td>
+   				<td style="text-align: left"><input type="checkbox" id="{{$index +1}}" ng-model="genre.selected"/>
+ 					<label for="{{$index +1}}">{{genre.name}}</label></td>
+       		</tr>
+       	</tbody>
+	</table>
+</div>
+<!-- Pagination -->
+<div class="center">
+	<paging
+		page="currentPage" 
+		page-size="itemsPerPage" 
+		total="totalItems"
+		show-prev-next="true"
+ 		show-first-last="true"
+		paging-action="pageChanged(page)">
+	</paging> 
+</div>	
+<div class="center">
+	<button class="btn waves-effect waves-light" type="submit" name="action" ng-click="editTrackConfirmed()">Save Changes</button>
+</div>
